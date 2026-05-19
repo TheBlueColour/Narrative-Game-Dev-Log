@@ -208,39 +208,114 @@ I then used my practise version of the gun holding, aiming and shooting and rema
 
 The Aiming blend, where the wrists are no longer snapped like in the practise version:
 
-![AO_pistol](image.png)
-![The Aiming Animation](image-1.png)
-![The State Machine](image-2.png)
+![AO_pistol](images/images.png)
+![The Aiming Animation](images/images-1.png)
+![The State Machine](images/images-2.png)
 
 Within the player character, an Event tick runs checking if the shooting amount the player has against zero and if its equal or smaller than zero it starts reloading taking 5 seconds to reload before changing the shoot amount back to 10, while the shooting amount is zero the player cant shoot and must wait for it to reload. I also made an Input in the players Inputs where if they right click they can manually reload the gun from any amount of bullets left.
 
-![Gun Code](image-3.png)
+![Gun Code](images/images-3.png)
 
 In the Event tick it checks the player's health continiously, if it drops below 100 it go into the state of healing, healing one health every 1 second and it stops healing once it reaches 100.
-- Player heals over time
 
-- Prisoner Dialogue between player and prisoner
-- Interact doors, open and close doors
-- Teleportation between the church and underground level
-- Puzzle and door opening to puzzle
-- Notes and key added
-- Dialogue for the first cutscene added
-- Flashlight
-- Made an office and decorated for the first cutscene
+With some of the script haven been written at this point, I got to work on one of the critical dialogue interactions in the game being between the player and the prisoner about the key in the game. I made the dialogue be triggered seperately walking into a box colision that then triggers the dialogue. In the dialogue graph there's a set condition that triggers an event that switches the camera point of view to create a more cinematic view, as well as in Week 3 I altered the trigger to also make the player model disapear and display the model used for cutscenes. The reason these two models are seperated is because the player model needs detailed enough hands for the gun to not look weird being held but in cutscenes we want the "canonical" version of the character we're playing as, so these two are seperated and triggered by events depending on if the player is a cutscene or playing to display which model. The prisoner has multiple dialogue options but only one that progresses and gives the player the quest which is to find the key underground, the rest of the dialogue choices serve as plot. Right before the cutscene ends (the end node) there's another set condition that triggers the camera to change back into the first person camera of the player to allow the player to control the character in first person mode again. The dialogue trigger that puts the player in the cutscenne deletes itself after being triggered once so the player can not experience the same cutscene twice.
 
+(Picture of the dialogue graph, picture of the cutscene playing out)
+
+As the church seen was created and set up I was able to start adding some of the interactables in the church, mainly allowing the doors to open when being interacted with. Simply done with an interface that when interacted with makes the door rotate open. The doors rotating open is then later replaced in Week 3 with doors that open with an animation made by Muhammed. In Week 3 I added dialogue when the doors are open, and made it specifically so that after one open the dialogue can not be triggered again with opening and closing the doors, this persists even if you change levels and reopen the level with the game still active, as originally the player was going to walk through the church doors again after leaving the underground but that was scrapped. 
+
+(Picture of the doors, the old opening and closing, the animated version, as well as the dialogue)
+
+Behind the altar I added a placeholder plane as a trapdoor that when interacted with teleports the player to the Underground area. In Week 3 I added dialogue that triggers a set condition that makes the trapdoor play an animation (created by Muhammed) before triggering the event that takes the player to the Underground level. The player is also then given the chose to say no to going underground and looking around a bit more first. 
+
+(The trap door, the dialogue and the animation)
+
+I added the puzzle I created in the practise unreal version into the project, leaving the same logic behind it spinning and the way depending on which way it's spun it gives a number, and when the specific number combination between the four pillar is set, the door opens (it checks the correct numbers every tick). I was able to fix the issue of it spinning too many times upon one button press and that was as simple as connecting the button press to be on completed rather than on pressed.
+
+(Show a picture of that code)
+
+I made the notes be interactable with an interface, when pressed E it opens the widget of the note and when pressing shift it closes the widget. For some reason I run into an issue where I can not set game paused when these widgets are open otherwise you just can't click any inputs, and i fixed this by simply not having the notes pause the game anymore. I also added the key to spawn after the boss fight is defeated which later unlocks the dialogue to the ending of the game, as well as interacting with all three notes around the level unlocks the player's ability to get a different ending. 
+
+(code idk bro)
+
+As I had the dialogue for the very cutscene but no area to play it out, I reshaped the Lvl_FirstPerson area (as it automatically sets itself as the first level player's play) to look like an office with the assetville pack and decorated it a little look more like an office as well as adding in the sherrif and giving him a skeleton and animation so that he's not t-posing (though he wont move around anywhere). With the cutscene, I set it up simiarly to the prisoner dialogue, whereas the dialogue triggers automatically upon loading the level (it checks different variables to check which dialogue set to play) and  (here's where the similarities start) the set condition automaticaly sets the player's camera to a set camera in the level. The player is never given autonomy in the office level and only views the level from that angle. There's another set condition that then triggers when the player finishes the dialogue to send them to the first level of the church.
+
+(Show the office and stuff)
+
+I gave the player a spotlight to serve as a flashlight, which by pressing the F button, through a flip flop function it switches between going on and off.
+
+(Show the flashlight)
 
 # Week 3
 
+When attempting to build the game that week to check if everything would work, I ran into an issue where all the set condition nodes would not trigger in the game, so I reached out to Liam and he had fixed the plugin. 
+
 ## Week 3 Implementation
 
-- Added more (alot) dialogue and interactions between the player and items
-- Animation of black screens and different dialogues
-- Asking for plugin to be fixe
-- Added endings in
-- Menu Screens added
-- Fail Screen
-- Added UI and fixed some details.
+With Week 3 I ended up impleneting alot of dialogue for the player interacting with things, some mentioned earlier in the dev log. Some others that I added were interaction with:
+- The blood on the floor
+- The tipped over benches
+- The scratches on the walls of the church
+Unlike the church doors, the text can be trigger multiple times over. I did notice an issue of where it's a little unclear for the player what they can interact with, so I added a widget that displays "interact" on screen everytime a player walks into the collision box of an item they can interact with, when they leave that box the text disapears. However there's an additional issue where the player isn't really aware of what they are looking at when interacting with things if they are not looking directly at the object of interest. 
 
+I was able to add a bunch of black loading screens in the game, for example at the start of the first cutscene, where there is a set condition to make the black screen disapear, as well as when transitioning to the Church level there's a black screen with an animation that has both the black screen and the text fade out. 
+
+With the endings finally written up I was able to add the endings in the game as well, have it be a dialogue trigger that checks if the player has the key and also if the player has interacted with all three of the notes. If the player has interacted with the key but not with all the notes, they are sent to one version of the dialogue where they can only save the prisoner, which opens the door (deletes it) and then makes the prisoner follow the player. The player then has to return back to the entrance of the Underground (with the prisoner following them) and because they have the key the teleported is triggered to send them back to the office and trigger ending A, with it's specific dialogue. In ending A there's set condition nodes that trigger the sky outside to turn red and the screen to shake, both of those things were made by Stuart and handed to me so i could connect them to be on the event and not on beginplay. The dialogue then triggers for the ending screen to fade in, showing text that gives extra context to the ending and allows the player to exit the game.
+
+If all three notes are collected the trigger instead sets a different dialogue, where the player is able to pick between saving the prisoner or leaving them behind, leaving them behind triggers Ending B that has it's own dialogue, and then triggers it's own ending screen with a different ending and also allowing the player to end the game.
+
+Additionally I made all the menu screens for the game, the start menu, death screen, a menu for the controls as well the pause menu. The start menu always triggers at the beginning of the game, even if you die and restart the game, the start menu allows you to to play the game, check the controls which its own widget, check the credits which is also it's own widget and then exit the game. The pause menu is similar but the player is able to trigger it at any point they want with clicking the P button, it will pause the game no matter where they are and they can choose to continue, check the controls, credits or leave the game. The death screen triggers if the player has reached zero health or less, and displays that the player has died and allows them to exit the game or play again. 
+
+# Week 4
+
+During Week 4, we were able to play test a bunch of different games as well as have people playtest out game, unfortunately I did not get that many playtests, but some is always better than none and was able to tell us some issues with the game that we can tackle to fix before the deadline.
+
+## The playtest result
+
+The playtest allowed us to observe that the game has too many enemies and that it overwhelms the player so we removed some of the enemies, as well as one of the notes in the game, I forgot to remove the logic where it pauses the game so the players assumed that the game. Whereas in reality it was just pausing the gameplay and not letting them use the shift button as its meant to, so I was able to fix that.
+
+![Responses](image.png)
+
+I also noticed that the players had a hard time seeing the decals on the puzzles in the puzzle room, so we altered the textures and the lighting in the room to make it easier for the player, as well as I forgot to remove the ability to shoot and kill the prisoner which I then removed.
+
+Overall, the players enjoyed the genre style and graphics of the game that we chose, and enjoyed the game overall despite the minor issues.
+
+![alt text](image-1.png)
+![alt text](image-2.png)
+
+## Reflection
+
+Overall, I am quite proud of the game, and the progress that was done I think the game is very fun, I just wish we had more animations in the game that are unique to the game and not unreal premade animations. I think I did a pretty solid job at managing the project and staying up to date with all my teammates on what they are doing, and how much we can get done in the time we have, there are some people that did not communicate well back and from that we are missing alot of potential in animations we could have had as well as the boss fight is lack luster, but there's only a certain amount of times I can yell at people to do work and it means nothing if they don't listen anyways. Between the teammates that were responsive and did their work, I think I was able to spread the work load amongst everyone rather equally, except for the amount of coding I had to do (as one of our developers just stopped responding), aside from that I think everyone who did put in work, put in substational amount of work in. Though personally, I wish I could have added in more gameplay, make it a little more complicated, and a third Enemy ai as it was originally planned as I didnt get to doing that.
+
+Some examples of me communicating to my teammates as proof:
+
+### Our voice call in Week 1 we had to delegate on what to do and what tasks to be done:
+
+![alt text](image-3.png)
+
+### Me communicating about meetings/tasks to do with the class:
+
+![alt text](image-4.png)
+![alt text](image-8.png)
+
+### Me assigning tasks to my teammates:
+
+![alt text](image-5.png)
+
+### Telling my teammates how to use Github (and also I helped alot of my teammates with the corruption issues we've been having with Github):
+
+![alt text](image-7.png)
+
+### Everytime I have asked to check for progress:
+
+### Week 1-
+![Week 1](image-6.png)
+
+### Week 2-
+![Week 2](image-10.png)
+
+### Week 3-
+![Week 3](image-9.png)
 
 
 
