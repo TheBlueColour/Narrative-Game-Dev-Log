@@ -6,12 +6,6 @@
 
 **Student ID**: 2506784
 
-**Total Word Count**:
-
-**Build Link**:
-
-**Video Demonstration link**:
-
 ## Abstract
 
 My task was to create a interactive narrative game in a group within four weeks using a mix and match of four different groups of options for the guideline of what are game should be. As a group we delegated on what to pick, so before picking the options we wanted a bottom line for what genre the game should be. We decided to make a horror game so we picked options with that in mind.
