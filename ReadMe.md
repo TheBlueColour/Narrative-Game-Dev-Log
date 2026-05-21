@@ -114,7 +114,7 @@ Exploring the Dialogue Graph:
 
 The Dialogue graph and the Dialogue widgets working:
 
-![](images/dialogue.gif)
+![ThegifoftheDialoguegraph](images/Dialogue.gif)
 
 Next I worked on the AI enemy needed for the game, and after a bunch of different video tutorials I landed on a version of the Ai Enemy which I could replicate later in the game project. The enemy pawn contains an Ai controller and a Blackboard, within the Blackboard there are different tasks the Ai sifts through depending on different conditions. 
 
