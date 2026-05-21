@@ -165,7 +165,7 @@ Click up:
 
 ![Click Up](images/image-16.png)
 
-With the repo up and running, and Dara and Reece haven built out the simple version of the levels I was able to start working on implementing game mechanics into the actual project. However alongside this we kept having major github issues where things would unexplainedly corrupt and delete files so I had to find a way around this and also teach all my teammates to the same thing, so now we keep backup files of everything we do to fix any conflict issues we end up having. 
+With the repo up and running, and Dara and Reece built out the simple version of the levels I was able to start working on implementing game mechanics into the actual project. However alongside this we kept having major github issues where things would unexplainedly corrupt and delete files so I had to find a way around this and also teach all my teammates to the same thing, so now we keep backup files of everything we do to fix any conflict issues we end up having. 
 
 Example of the underground level corrupting and me having to replace it right after a merge:
 
@@ -217,9 +217,9 @@ With some of the script haven been written at this point, I got to work on one o
 ![alt text](images/i11.png)
 ![](images/Video%20Project%2021.gif)
 
-As the church seen was created and set up I was able to start adding some of the interactables in the church, mainly allowing the doors to open when being interacted with. Simply done with an interface that when interacted with makes the door rotate open. The doors rotating open is then later replaced in Week 3 with doors that open with an animation made by Muhammed. In Week 3 I added dialogue when the doors are open, and made it specifically so that after one open the dialogue can not be triggered again with opening and closing the doors, this persists even if you change levels and reopen the level with the game still active, as originally the player was going to walk through the church doors again after leaving the underground but that was scrapped. 
+As the church seen was created and set up I was able to start adding some of the interactables in the church, mainly allowing the doors to open when being interacted with. Simply done with an interface that when interacted with makes the door rotate open. In Week 3 I added dialogue when the doors are open, and made it specifically so that after one open the dialogue can not be triggered again with opening and closing the doors, this persists even if you change levels and reopen the level with the game still active, as originally the player was going to walk through the church doors again after leaving the underground but that was scrapped. 
 
-Old Doors:
+Doors:
 ![](images/Video%20Project%2022.gif)
 
 Behind the altar I added a placeholder plane as a trapdoor that when interacted with teleports the player to the Underground area. In Week 3 I added dialogue that triggers a set condition that makes the trapdoor play an animation (created by Muhammed) before triggering the event that takes the player to the Underground level. The player is also then given the chose to say no to going underground and looking around a bit more first. 
@@ -362,3 +362,5 @@ How To Interact In Unreal Engine 5 | How To Use Blueprint Interfaces In Unreal E
 How To Add Third-Person Aiming Using Aim Offset - Unreal Engine 5 Weapon System Tutorial - YouTube (s.d.) At: https://www.youtube.com/watch?v=9T_Ya1_Vveg&list=PLLW3PN8ZDyTWd_f3y-YScCPx-VOfzyssJ&index=14 (Accessed  14/05/2026).
 
 Unreal Engine Tutorial-How to add flashlight to your game - YouTube (s.d.) At: https://www.youtube.com/watch?v=AlnBVwVPMT8&list=PLLW3PN8ZDyTWd_f3y-YScCPx-VOfzyssJ&index=15 (Accessed  14/05/2026).
+
+All assets/audio in-game are either created by my teammates, are premade unreal assets, or were sourced from Fab. 
